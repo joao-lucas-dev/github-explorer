@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
 import logo from '../../assets/logo.svg';
@@ -67,9 +68,7 @@ const Dashboard: React.FC = () => {
     <>
       <img src={logo} alt="GitHub Explorer" />
       <Title>
-        Explore repositórios
-        <br />
-        no GitHub
+        Explore repositórios <br /> no GitHub
       </Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
@@ -85,7 +84,10 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map((repository) => (
-          <a key={repository.full_name} href="teste">
+          <Link
+            to={`/repository/${repository.full_name}`}
+            key={repository.full_name}
+          >
             <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}
@@ -97,7 +99,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <FiChevronRight size={20} />
-          </a>
+          </Link>
         ))}
       </Repositories>
     </>
