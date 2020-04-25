@@ -18,7 +18,17 @@ interface Repository {
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [repositories, setRepositories] = useState<Repository[]>(() => {
+    const storagedRepositories = localStorage.getItem(
+      '@GitHubExplorer:repositories',
+    );
+
+    if (storagedRepositories) {
+      return JSON.parse(storagedRepositories);
+    }
+
+    return [];
+  });
 
   async function handleAddRepository(
     e: FormEvent<HTMLFormElement>,
@@ -39,6 +49,13 @@ const Dashboard: React.FC = () => {
       setInputError('Erro na busca por esse repositório');
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@GitHubExplorer:repositories',
+      JSON.stringify(repositories),
+    );
+  }, [repositories]);
 
   useEffect(() => {
     if (newRepo !== '') {
