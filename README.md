@@ -11,7 +11,7 @@
 <br>
 
 <p align="center">
-  <img alt="Mockup" src="photos/demo.gif">
+  <img alt="Mockup" src="photos/demo.png">
 </p>
 
 ## :rocket: Technologies
