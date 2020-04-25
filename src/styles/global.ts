@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import githubBackground from '../assets/github-background.svg';
+
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -23,6 +25,7 @@ export default createGlobalStyle`
   }
 
   body {
+    background: #f0f0f5 url(${githubBackground}) no-repeat 70% top;
     -webkit-font-smoothig: antialiased !important;
   }
 
